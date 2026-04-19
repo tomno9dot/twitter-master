@@ -11,6 +11,13 @@ import notificationRoutes from './routes/notification.routes.js'
 
 dotenv.config();
 
+if (!process.env.MONGO_URI) {
+    console.error("MONGO_URI is not defined in environment variables");
+}
+if (!process.env.JWT_SECRET) {
+    console.error("JWT_SECRET is not defined in environment variables");
+}
+
 cloudinary.config({
      cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
      api_key: process.env.CLOUDINARY_API_KEY,
@@ -28,6 +35,10 @@ app.use("/api/auth", authRoutes)
 app.use("/api/users", userRoutes)
 app.use("/api/post", postRoutes)
 app.use("/api/notifications", notificationRoutes)
+
+app.get("/api/health", (req, res) => {
+    res.status(200).json({ status: "ok", env: process.env.NODE_ENV });
+});
 
 connectDb();
 

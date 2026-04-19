@@ -1,6 +1,6 @@
 import Notification from "../models/Notification.js";
 import User from "../models/User.js";
-import bcrypt, { genSalt } from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import {v2 as cloudinary} from 'cloudinary'
 
 export const getUserProfile = async (req, res) => {
@@ -114,7 +114,7 @@ export const updatedUser = async (req, res) => {
                     return res.status(400).json({error: "Password must be at least 6 characters long"})
                 }
 
-                const salt = await genSalt(10)
+                const salt = await bcrypt.genSalt(10)
                 user.password = await bcrypt.hash(newPassword, salt)
         }
 

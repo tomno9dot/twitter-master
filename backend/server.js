@@ -31,16 +31,20 @@ app.use("/api/notifications", notificationRoutes)
 
 connectDb();
 
+const frontendDistPath = path.join(__dirname, "frontend", "dist");
+
 if (process.env.NODE_ENV === "production" || process.env.VERCEL) {
-	app.use(express.static(path.join(__dirname, "/frontend/dist")));
+	app.use(express.static(frontendDistPath));
 
 	app.get("*", (req, res) => {
-		res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+		res.sendFile(path.resolve(frontendDistPath, "index.html"));
 	});
 }
 
-app.listen(PORT, () => { 
-     console.log(`Server is running on port ${PORT}`) 
-})
+if (!process.env.VERCEL) {
+    app.listen(PORT, () => { 
+         console.log(`Server is running on port ${PORT}`) 
+    })
+}
 
 export default app;

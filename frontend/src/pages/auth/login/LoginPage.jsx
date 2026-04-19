@@ -64,11 +64,16 @@ const LoginPage = () => {
 	};
 
 	return (
-		<div className='max-w-screen-xl mx-auto flex h-screen'>
-			<div className='flex-1 flex flex-col justify-center items-center'>
-				<form className='flex gap-4 flex-col' onSubmit={handleSubmit}>
-					<XSvg className='w-24 h-24 lg:hidden fill-white' />
-					<h1 className='text-4xl font-extrabold text-white'>{"Let's"} go.</h1>
+		<div className='max-w-screen-2xl mx-auto flex h-screen px-10'>
+			<div className='flex-1 hidden lg:flex items-center  justify-center'>
+				<XSvg className='lg:w-2/3 fill-black' />
+			</div>
+			<div className='flex-1 flex flex-col justify-center'>
+				<div className='lg:w-2/3  mx-auto md:mx-20 flex gap-4 flex-col'>
+					<XSvg className='w-24 h-24  fill-black' />
+					<h1 className='text-6xl lg:text-8xl font-extrabold text-black tracking-tighter'>Happening now</h1>
+					<h2 className='text-3xl font-bold text-black mb-4'>Join today.</h2>
+					<form className='flex gap-4 flex-col' onSubmit={handleSubmit}>
 					<label className='input input-bordered rounded flex items-center gap-2'>
 						<MdOutlineMail />
 						<input
@@ -92,18 +97,16 @@ const LoginPage = () => {
 							value={formData.password}
 						/>
 					</label>
-					<button className='btn rounded-full btn-primary text-white'>{isPending ? "loading..." : "Login"}</button>
+					<button className='btn rounded-full btn-primary text-black'>{isPending ? "loading..." : "Login"}</button>
 					{isError && <p className='text-red-500'>{error.message}</p>}
 				</form>
 				<div className='flex flex-col gap-2 mt-4'>
-					<p className='text-white text-lg'>{"Don't"} have an account?</p>
+					<p className='text-black text-lg'>{"Don't"} have an account?</p>
 					<Link to='/signup'>
-						<button className='btn rounded-full btn-primary text-white btn-outline w-full'>Sign up</button>
+						<button className='btn rounded-full btn-primary text-black btn-outline w-full'>Sign up</button>
 					</Link>
 				</div>
-			</div>
-			<div className='flex-1 hidden lg:flex items-center  justify-center'>
-				<XSvg className='lg:w-2/3 fill-white' />
+				</div>
 			</div>
 		</div>
 	);

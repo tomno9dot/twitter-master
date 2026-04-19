@@ -48,7 +48,7 @@ const App = () => {
 
     return (
        
-        <div className="flex max-w-6xl mx-auto ">
+        <div className={`flex ${authUser ? "max-w-6xl mx-auto" : "max-w-full"}`}>
            { authUser &&  <Sidebar />}
             
             
